@@ -6,7 +6,7 @@ public:
         for(int i=0;i<nums.size()-1;){
             if(nums[i]==nums[i+1]){
                 v.push_back(nums[i]);
-                i+=2;
+                i++;
             }
             else
                 i++;
