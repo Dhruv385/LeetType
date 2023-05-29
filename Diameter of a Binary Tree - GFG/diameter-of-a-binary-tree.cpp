@@ -102,14 +102,23 @@ class Solution {
         return ans;
     }
   public:
-    int diameter(Node* root) {
-        if(root==NULL)
-            return 0;
-        int opt1=diameter(root->left);
-        int opt2=diameter(root->right);
-        int opt3=height(root->left)+height(root->right)+1;
-        int ans=max(opt1,max(opt2,opt3));
+    pair<int,int> diameterFast(Node* root){
+        if(root==NULL){
+            pair<int,int> p=make_pair(0,0);
+            return p;
+        }
+        pair<int,int> left=diameterFast(root->left);
+        pair<int,int> right=diameterFast(root->right);
+        int opt1=left.first;
+        int opt2=right.first;
+        int opt3=left.second+right.second+1;
+        pair<int,int> ans;
+        ans.first=max(opt1,max(opt2,opt3));
+        ans.second=max(left.second,right.second)+1;
         return ans;
+    }
+    int diameter(Node* root) {
+        return diameterFast(root).first;
     }
 };
 
