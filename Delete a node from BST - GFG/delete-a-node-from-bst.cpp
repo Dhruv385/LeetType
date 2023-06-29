@@ -114,11 +114,11 @@ Node* solve(Node* left,Node* right){
         return left;
     else if(left==NULL)
         return right;
-    Node* temp=right;
-    while(temp->left)
-        temp=temp->left;
-    temp->left=left;
-    return right;
+    Node* temp=left;
+    while(temp->right)
+        temp=temp->right;
+    temp->right=right;
+    return left;
 }
 Node *deleteNode(Node *root, int X) {
     if(root==NULL)
