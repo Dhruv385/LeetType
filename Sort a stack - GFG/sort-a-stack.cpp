@@ -54,11 +54,11 @@ void SortedStack :: sort()
 {
     priority_queue<int> pq;
     while(!s.empty()){
-        pq.push(~s.top());
+        pq.push(-s.top());
         s.pop();
     }
     while(!pq.empty()){
-        s.push(~pq.top());
+        s.push(-pq.top());
         pq.pop();
     }
 }
