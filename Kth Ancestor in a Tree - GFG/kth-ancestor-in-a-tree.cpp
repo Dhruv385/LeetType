@@ -110,7 +110,8 @@ struct Node
 	struct Node *left, *right;
 };
 */
-// your task is to complete this function
+// your task is to complete this functio
+
 Node* solve(Node *root, int &k, int node){
     if(root==NULL)
         return NULL;
