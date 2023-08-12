@@ -5,27 +5,24 @@ using namespace std;
 // } Driver Code Ends
 class Solution
 {
-    private:
-        void solve(string S,vector<string> &s,int ind){
-            if(ind==S.length()-1){
-                s.push_back(S);
-                return ;
-            }
-            for(int j=ind;j<S.length();j++){
-                swap(S[ind],S[j]);
-                solve(S,s,ind+1);
-                swap(S[ind],S[j]);
-            }
-        }
 	public:
-		vector<string>find_permutation(string S)
-		{
-		    vector<string> s;
+	    void solve(string S,set<string> &ans,int ind){
+	        if(ind>=S.length()){
+	            ans.insert(S);
+	            return;
+	        }
+	        for(int j=ind;j<S.length();j++){
+	            swap(S[ind],S[j]);
+	            solve(S,ans,ind+1);
+	            swap(S[ind],S[j]);
+	        }
+	    }
+		vector<string>find_permutation(string S){
+		    set<string> ans;
 		    int ind=0;
-		    solve(S,s,ind);
-		    sort(s.begin(),s.end());
-		    s.erase(unique(s.begin(),s.end()),s.end());
-		    return s;
+		    solve(S,ans,ind);
+		    vector<string> v(ans.begin(),ans.end());
+		    return v;
 		}
 };
 
@@ -41,6 +38,7 @@ int main(){
 	    cin >> S;
 	    Solution ob;
 	    vector<string> ans = ob.find_permutation(S);
+	    sort(ans.begin(),ans.end());
 	    for(auto i: ans)
 	    {
 	    	cout<<i<<" ";
